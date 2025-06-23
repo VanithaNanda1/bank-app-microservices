@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: messageservice
+  cloud:
+    function:
+      definition: emailFunction|smsFunction
+    stream:
+      bindings:
+        emailFunctionsmsFunction-in-0:
+          destination: send-communication
+          group: ${spring.application.name}
+
+      kafka:
+        binder:
+          brokers:
+            - localhost:9092
+
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+#    connection-timeout: 10s
+
+
+
+server:
+  port : 9091
+
